@@ -53,9 +53,7 @@
 
   <script>
     let autoGenerateInterval;
-    let wakeLock = null; // Wake Lock API reference
 
-    // Function to generate random numbers
     function generateRandom() {
       const min = 1; // Set minimum value
       const max = 100; // Set maximum value
@@ -63,56 +61,19 @@
       document.getElementById('randomNumber').innerText = randomNumber;
     }
 
-    // Function to start auto-generation
     function startAuto() {
       const interval = 3; // Default 3 seconds for auto-generation
       stopAuto(); // Stop any existing interval to prevent duplicates
       autoGenerateInterval = setInterval(generateRandom, interval * 1000);
     }
 
-    // Function to stop auto-generation
     function stopAuto() {
       clearInterval(autoGenerateInterval);
     }
 
-    // Function to request a wake lock
-    async function requestWakeLock() {
-      try {
-        if ('wakeLock' in navigator) {
-          wakeLock = await navigator.wakeLock.request('screen'); // Request screen wake lock
-          console.log('Wake Lock is active.');
-          wakeLock.addEventListener('release', () => {
-            console.log('Wake Lock released.');
-          });
-        } else {
-          console.log('Wake Lock API is not supported on this device.');
-        }
-      } catch (err) {
-        console.error(`Wake Lock request failed: ${err.name}, ${err.message}`);
-      }
-    }
-
-    // Function to release the wake lock
-    function releaseWakeLock() {
-      if (wakeLock !== null) {
-        wakeLock.release().then(() => {
-          wakeLock = null;
-          console.log('Wake Lock released manually.');
-        });
-      }
-    }
-
-    // On page load
     window.onload = () => {
       document.getElementById('randomNumber').innerText = "-"; // Set placeholder
       startAuto(); // Automatically start auto-generation
-      requestWakeLock(); // Request wake lock to prevent standby mode
-    };
-
-    // Clean up wake lock when the page is unloaded
-    window.onbeforeunload = () => {
-      releaseWakeLock();
-      stopAuto();
     };
   </script>
 </body>
