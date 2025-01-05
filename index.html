@@ -23,6 +23,7 @@
       padding: 20px;
       background-color: #121212; /* Dark background */
       color: #f4f4f4; /* Light text for contrast */
+      margin: 0;
     }
 
     .container {
@@ -64,7 +65,7 @@
     }
 
     .number {
-      font-size: 60px; /* Larger number */
+      font-size: 80px; /* Larger number for better visibility */
       margin-top: 20px;
       font-weight: bold;
       background: linear-gradient(90deg, #58a3cd 0%, #55cda2 100%); /* Gradient for the number */
@@ -105,7 +106,7 @@
         padding: 15px;
       }
       .number {
-        font-size: 50px; /* Scale the generated number size */
+        font-size: 70px; /* Scale the generated number size */
       }
       button {
         font-size: 12px; /* Smaller button text */
@@ -178,9 +179,9 @@
     // Automatically scroll and zoom to the number on page load
     window.onload = () => {
       setTimeout(() => {
+        document.body.style.zoom = "2.5"; // Adjust zoom level for your Galaxy Watch screen
         scrollToNumber();
-        document.body.style.zoom = "1.8"; // Adjust zoom level for your Galaxy Watch screen
-      }, 300); // Slight delay to ensure page content is fully loaded before zoom and scroll
+      }, 300); // Slight delay to ensure content is fully loaded before zoom and scroll
     };
   </script>
 </body>
