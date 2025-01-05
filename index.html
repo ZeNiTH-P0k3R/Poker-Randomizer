@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.5, maximum-scale=1.5, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Poker Randomizer</title>
 
   <!-- Link to manifest.json -->
@@ -169,9 +169,13 @@
       clearInterval(autoGenerateInterval);
     }
 
-    // Automatically scroll to the number on page load
+    // Automatically scroll to the number on page load and zoom into it
     window.onload = () => {
-      document.getElementById('randomNumber').scrollIntoView({ behavior: 'smooth' });
+      const numberElement = document.getElementById('randomNumber');
+      numberElement.scrollIntoView({ behavior: 'smooth' });
+
+      // Auto-zoom to the number
+      document.body.style.zoom = "1.8"; // Adjust zoom level to fit your screen
     };
   </script>
 </body>
