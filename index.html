@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,71 +13,63 @@
   <link rel="apple-touch-icon" href="icon-512.png" sizes="512x512">
 
   <!-- Theme color for the PWA -->
-  <meta name="theme-color" content="#121212">
+  <meta name="theme-color" content="#2c4844">
 
   <style>
-    /* Dark mode styling */
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 20px;
-      background-color: #121212; /* Dark background */
-      color: #f4f4f4; /* Light text for contrast */
+      background-color: #1a1a1a; /* Dark background */
+      color: #e5e5e5; /* Light text */
     }
-
     .container {
       max-width: 300px;
       margin: 0 auto;
       padding: 20px;
-      border: 1px solid #444; /* Subtle border for dark theme */
       border-radius: 10px;
-      background: #1e1e1e; /* Slightly lighter dark background */
+      background: #2c2c2c; /* Slightly lighter background for contrast */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
-
     h1 {
-      font-size: 20px;
+      font-size: 24px;
       margin-bottom: 10px;
-      color: #f4f4f4; /* Light text */
+      color: #2c4844; /* Accent color */
     }
-
     button {
-      padding: 5px 10px; /* Smaller buttons */
-      font-size: 14px; /* Reduced font size */
-      margin-top: 10px;
-      width: 90px; /* All buttons same width */
-      background: #007bff;
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px 5px;
+      background: #30564e; /* Button color */
       color: #fff;
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
-
     button:hover {
-      background: #0056b3;
+      background: #376a5d; /* Hover effect */
     }
-
     .number {
-      font-size: 60px; /* Larger number */
+      font-size: 40px;
       margin-top: 20px;
       font-weight: bold;
-      color: #293E3F; /* Dark teal-green */
+      color: #2c4844; /* Accent color */
     }
-
     input[type="number"] {
-      padding: 3px; /* Smaller padding */
-      width: 60px; /* Smaller width */
+      padding: 8px;
+      width: 80px;
       margin: 5px;
-      font-size: 14px; /* Reduced font size */
-      background-color: #1e1e1e; /* Dark input field background */
-      color: #f4f4f4; /* Light text */
-      border: 1px solid #444; /* Subtle border */
+      border: 1px solid #e5e5e5;
       border-radius: 5px;
+      background-color: #2c2c2c; /* Match container background */
+      color: #e5e5e5; /* Light text */
+      text-align: center;
     }
-
-    input[type="number"]::placeholder {
-      color: #aaa; /* Placeholder text color */
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #376a5d; /* Accent border color */
     }
-
     img {
       margin: 20px auto;
       display: block;
@@ -98,7 +90,7 @@
     <br><br>
     <label for="interval">Time interval (seconds):</label>
     <br>
-    <input type="number" id="interval" placeholder="Interval" value="3">
+    <input type="number" id="interval" placeholder="Interval" value="10">
     <br><br>
     <button onclick="generateRandom()">Generate</button>
     <button onclick="startAuto()">Start Auto</button>
@@ -116,7 +108,7 @@
     }
 
     function startAuto() {
-      const interval = parseInt(document.getElementById('interval').value, 10) || 3; // Default 3 seconds
+      const interval = parseInt(document.getElementById('interval').value, 10) || 10;
       stopAuto(); // Stop any existing interval to prevent duplicates
       autoGenerateInterval = setInterval(generateRandom, interval * 1000);
     }
