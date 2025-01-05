@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.5, maximum-scale=1.5, user-scalable=no">
   <title>Poker Randomizer</title>
 
   <!-- Link to manifest.json -->
@@ -59,7 +59,7 @@
     .button-row {
       display: flex;
       justify-content: center;
-      gap: 10px; /* Space between buttons */
+      gap: 5px; /* Reduced gap between buttons */
       margin-top: 10px;
     }
 
@@ -94,6 +94,28 @@
       display: block;
       width: 100px;
     }
+
+    /* Responsive adjustments for small screens */
+    @media screen and (max-width: 400px) {
+      body {
+        font-size: 90%; /* Slightly smaller text */
+      }
+      .container {
+        max-width: 250px; /* Adjust container width for smaller screens */
+        padding: 15px;
+      }
+      .number {
+        font-size: 50px; /* Scale the generated number size */
+      }
+      button {
+        font-size: 12px; /* Smaller button text */
+        width: 80px; /* Narrower buttons */
+      }
+      input[type="number"] {
+        width: 50px; /* Narrower input fields */
+        font-size: 12px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -123,6 +145,7 @@
 
     <div class="number" id="randomNumber">-</div>
   </div>
+
   <script>
     let autoGenerateInterval;
 
@@ -131,6 +154,9 @@
       const max = parseInt(document.getElementById('max').value, 10) || 100;
       const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
       document.getElementById('randomNumber').innerText = randomNumber;
+
+      // Scroll to the generated number
+      document.getElementById('randomNumber').scrollIntoView({ behavior: 'smooth' });
     }
 
     function startAuto() {
@@ -142,6 +168,11 @@
     function stopAuto() {
       clearInterval(autoGenerateInterval);
     }
+
+    // Automatically scroll to the number on page load
+    window.onload = () => {
+      document.getElementById('randomNumber').scrollIntoView({ behavior: 'smooth' });
+    };
   </script>
 </body>
 </html>
