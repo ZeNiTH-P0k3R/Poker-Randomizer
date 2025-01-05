@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poker Randomizer</title>
+
+  <!-- Link to manifest.json -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Favicon and app icons -->
+  <link rel="icon" href="icon.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="icon-512.png" sizes="512x512">
+
+  <!-- Theme color for the PWA -->
+  <meta name="theme-color" content="#007bff">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: #fff;
+    }
+    h1 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .number {
+      font-size: 40px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    input[type="number"] {
+      padding: 5px;
+      width: 80px;
+      margin: 5px;
+    }
+    img {
+      margin: 20px auto;
+      display: block;
+      width: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Display the app icon -->
+    <img src="icon.png" alt="Poker Randomizer Icon">
+
+    <h1>Poker Randomizer</h1>
+    <label for="range">Choose range:</label>
+    <br>
+    <input type="number" id="min" placeholder="Min" value="1">
+    <input type="number" id="max" placeholder="Max" value="100">
+    <br><br>
+    <label for="interval">Time interval (seconds):</label>
+    <br>
+    <input type="number" id="interval" placeholder="Interval" value="10">
+    <br><br>
+    <button onclick="generateRandom()">Generate</button>
+    <button onclick="startAuto()">Start Auto</button>
+    <button onclick="stopAuto()">Stop Auto</button>
+    <div class="number" id="randomNumber">-</div>
+  </div>
+  <script>
+    let autoGenerateInterval;
+
+    function generateRandom() {
+      const min = parseInt(document.getElementById('min').value, 10) || 1;
+      const max = parseInt(document.getElementById('max').value, 10) || 100;
+      const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      document.getElementById('randomNumber').innerText = randomNumber;
+    }
+
+    function startAuto() {
+      const interval = parseInt(document.getElementById('interval').value, 10) || 10;
+      stopAuto(); // Stop any existing interval to prevent duplicates
+      autoGenerateInterval = setInterval(generateRandom, interval * 1000);
+    }
+
+    function stopAuto() {
+      clearInterval(autoGenerateInterval);
+    }
+  </script>
+</body>
+</html>
