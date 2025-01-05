@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Adjust the viewport to force scaling -->
-  <meta name="viewport" content="width=300, initial-scale=2.0, maximum-scale=2.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Poker Randomizer</title>
 
   <!-- Link to manifest.json -->
@@ -25,6 +24,8 @@
       background-color: #121212; /* Dark background */
       color: #f4f4f4; /* Light text for contrast */
       margin: 0;
+      transform-origin: center top; /* Ensure scaling is centered */
+      transform: scale(2.0); /* Default zoom scale for Galaxy Watch */
     }
 
     .container {
@@ -177,8 +178,10 @@
       numberElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
-    // Automatically scroll to the number on page load
-    window.onload = scrollToNumber;
+    // Automatically scroll and zoom to the number on page load
+    window.onload = () => {
+      scrollToNumber();
+    };
   </script>
 </body>
 </html>
