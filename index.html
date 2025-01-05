@@ -177,8 +177,13 @@
       }, 100); // Adjust delay if necessary
     }
 
-    // Automatically scroll to the number on page load
-    window.onload = scrollToNumber;
+    // Automatically scroll and zoom to the number on page load
+    window.onload = () => {
+      scrollToNumber();
+      setTimeout(() => {
+        document.body.style.zoom = "1.8"; // Adjust zoom level for your Galaxy Watch screen
+      }, 200); // Slight delay to ensure scrolling finishes before zooming
+    };
   </script>
 </body>
 </html>
