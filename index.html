@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Adjusted the initial scale -->
   <meta name="viewport" content="width=device-width, initial-scale=10.0, maximum-scale=10.0, user-scalable=no">
   <title>Poker Randomizer</title>
 
@@ -16,21 +17,23 @@
   <meta name="theme-color" content="#121212">
 
   <style>
-    /* Dark mode styling */
+    /* Center the body to ensure the number appears in the viewport */
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      padding: 20px;
+      margin: 0;
+      padding: 0;
+      width: 100vw; /* Match the viewport width */
+      height: 100vh; /* Match the viewport height */
       background-color: #121212; /* Dark background */
       color: #f4f4f4; /* Light text for contrast */
-      margin: 0;
-      transform-origin: center top; /* Ensure scaling is centered */
-      transform: scale(1); /* Default zoom scale for Galaxy Watch */
+      display: flex; /* Use Flexbox to center content */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
     }
 
     .container {
       max-width: 300px;
-      margin: 0 auto;
       padding: 20px;
       border: 1px solid #444; /* Subtle border for dark theme */
       border-radius: 10px;
@@ -123,9 +126,6 @@
 </head>
 <body>
   <div class="container">
-    <!-- Display the app icon -->
-    <img src="icon.png" alt="Poker Randomizer Icon">
-
     <h1>Poker Randomizer</h1>
     <label for="range">Choose range:</label>
     <br>
@@ -157,9 +157,6 @@
       const max = parseInt(document.getElementById('max').value, 10) || 100;
       const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
       document.getElementById('randomNumber').innerText = randomNumber;
-
-      // Scroll to the generated number
-      scrollToNumber();
     }
 
     function startAuto() {
@@ -171,17 +168,6 @@
     function stopAuto() {
       clearInterval(autoGenerateInterval);
     }
-
-    function scrollToNumber() {
-      // Scroll to the number smoothly
-      const numberElement = document.getElementById('randomNumber');
-      numberElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    // Automatically scroll and zoom to the number on page load
-    window.onload = () => {
-      scrollToNumber();
-    };
   </script>
 </body>
 </html>
