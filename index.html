@@ -25,11 +25,12 @@
       color: #f4f4f4; /* Light text for contrast */
       margin: 0;
       transform-origin: center top; /* Ensure scaling is centered */
+      transform: scale(1.0); /* Default zoom scale for Galaxy Watch */
     }
 
     .container {
       max-width: 300px;
-      margin: 0 auto; /* Center the container horizontally */
+      margin: 0 auto;
       padding: 20px;
       border: 1px solid #444; /* Subtle border for dark theme */
       border-radius: 10px;
@@ -122,6 +123,9 @@
 </head>
 <body>
   <div class="container">
+    <!-- Display the app icon -->
+    <img src="icon.png" alt="Poker Randomizer Icon">
+
     <h1>Poker Randomizer</h1>
     <label for="range">Choose range:</label>
     <br>
@@ -174,7 +178,7 @@
       numberElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
-    // Automatically scroll to the number on page load
+    // Automatically scroll and zoom to the number on page load
     window.onload = () => {
       scrollToNumber();
     };
