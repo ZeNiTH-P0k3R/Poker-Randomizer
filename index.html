@@ -56,6 +56,13 @@
       background: #0056b3;
     }
 
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px; /* Space between buttons */
+      margin-top: 10px;
+    }
+
     .number {
       font-size: 60px; /* Larger number */
       margin-top: 20px;
@@ -104,9 +111,16 @@
     <br>
     <input type="number" id="interval" placeholder="Interval" value="3">
     <br><br>
+
+    <!-- Generate button on a separate line -->
     <button onclick="generateRandom()">Generate</button>
-    <button onclick="startAuto()">Start Auto</button>
-    <button onclick="stopAuto()">Stop Auto</button>
+
+    <!-- Start and Stop Auto buttons on the same line -->
+    <div class="button-row">
+      <button onclick="startAuto()">Start Auto</button>
+      <button onclick="stopAuto()">Stop Auto</button>
+    </div>
+
     <div class="number" id="randomNumber">-</div>
   </div>
   <script>
