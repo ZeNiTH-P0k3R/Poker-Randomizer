@@ -24,8 +24,6 @@
       background-color: #121212; /* Dark background */
       color: #f4f4f4; /* Light text for contrast */
       margin: 0;
-      transform-origin: center top; /* Ensure scaling is centered */
-      transform: scale(2.0); /* Default zoom scale for Galaxy Watch */
     }
 
     .container {
@@ -180,7 +178,10 @@
 
     // Automatically scroll and zoom to the number on page load
     window.onload = () => {
-      scrollToNumber();
+      setTimeout(() => {
+        document.body.style.zoom = "2.5"; // Adjust zoom level for your Galaxy Watch screen
+        scrollToNumber();
+      }, 300); // Slight delay to ensure content is fully loaded before zoom and scroll
     };
   </script>
 </body>
