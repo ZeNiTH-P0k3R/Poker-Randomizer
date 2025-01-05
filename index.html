@@ -60,7 +60,7 @@
       font-size: 60px; /* Larger number */
       margin-top: 20px;
       font-weight: bold;
-      color: #21f321; /* Bright green for the number */
+      color: #293E3F; /* Dark teal-green */
     }
 
     input[type="number"] {
@@ -98,7 +98,7 @@
     <br><br>
     <label for="interval">Time interval (seconds):</label>
     <br>
-    <input type="number" id="interval" placeholder="Interval" value="10">
+    <input type="number" id="interval" placeholder="Interval" value="3">
     <br><br>
     <button onclick="generateRandom()">Generate</button>
     <button onclick="startAuto()">Start Auto</button>
@@ -116,7 +116,7 @@
     }
 
     function startAuto() {
-      const interval = parseInt(document.getElementById('interval').value, 10) || 10;
+      const interval = parseInt(document.getElementById('interval').value, 10) || 3; // Default 3 seconds
       stopAuto(); // Stop any existing interval to prevent duplicates
       autoGenerateInterval = setInterval(generateRandom, interval * 1000);
     }
