@@ -156,7 +156,7 @@
       document.getElementById('randomNumber').innerText = randomNumber;
 
       // Scroll to the generated number
-      document.getElementById('randomNumber').scrollIntoView({ behavior: 'smooth' });
+      scrollToNumber();
     }
 
     function startAuto() {
@@ -169,14 +169,16 @@
       clearInterval(autoGenerateInterval);
     }
 
-    // Automatically scroll to the number on page load and zoom into it
-    window.onload = () => {
-      const numberElement = document.getElementById('randomNumber');
-      numberElement.scrollIntoView({ behavior: 'smooth' });
+    function scrollToNumber() {
+      // Scroll after a slight delay to ensure content is fully loaded
+      setTimeout(() => {
+        const numberElement = document.getElementById('randomNumber');
+        numberElement.scrollIntoView({ behavior: 'smooth' });
+      }, 100); // Adjust delay if necessary
+    }
 
-      // Auto-zoom to the number
-      document.body.style.zoom = "1.8"; // Adjust zoom level to fit your screen
-    };
+    // Automatically scroll to the number on page load
+    window.onload = scrollToNumber;
   </script>
 </body>
 </html>
