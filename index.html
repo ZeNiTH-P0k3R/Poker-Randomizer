@@ -164,4 +164,23 @@
     function startAuto() {
       const interval = parseInt(document.getElementById('interval').value, 10) || 3; // Default 3 seconds
       stopAuto(); // Stop any existing interval to prevent duplicates
-      autoGenerateInterval = 
+      autoGenerateInterval = setInterval(generateRandom, interval * 1000);
+    }
+
+    function stopAuto() {
+      clearInterval(autoGenerateInterval);
+    }
+
+    function scrollToNumber() {
+      const numberElement = document.getElementById('randomNumber');
+      numberElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    window.onload = () => {
+      document.getElementById('randomNumber').innerText = "-"; // Set placeholder
+      scrollToNumber(); // Scroll to the placeholder if necessary
+      startAuto(); // Automatically start auto-generation
+    };
+  </script>
+</body>
+</html>
