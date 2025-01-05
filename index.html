@@ -24,8 +24,10 @@
       background-color: #121212; /* Dark background */
       color: #f4f4f4; /* Light text for contrast */
       margin: 0;
-      transform-origin: center top; /* Ensure scaling is centered */
-      transform: scale(1.0); /* Default zoom scale for Galaxy Watch */
+      transform-origin: center center; /* Ensure scaling is centered */
+      transform: scale(1.5); /* Zoom in on page load */
+      height: 100vh; /* Ensure it fills the viewport height */
+      overflow: hidden; /* Prevent scrolling */
     }
 
     .container {
@@ -157,9 +159,6 @@
       const max = parseInt(document.getElementById('max').value, 10) || 100;
       const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
       document.getElementById('randomNumber').innerText = randomNumber;
-
-      // Scroll to the generated number
-      scrollToNumber();
     }
 
     function startAuto() {
@@ -173,14 +172,13 @@
     }
 
     function scrollToNumber() {
-      // Scroll to the number smoothly
       const numberElement = document.getElementById('randomNumber');
       numberElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
-    // Automatically scroll and zoom to the number on page load
     window.onload = () => {
-      scrollToNumber();
+      generateRandom(); // Generate a number on page load
+      scrollToNumber(); // Scroll to the number
     };
   </script>
 </body>
