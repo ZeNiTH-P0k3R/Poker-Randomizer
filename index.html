@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Adjusted the initial scale -->
   <meta name="viewport" content="width=device-width, initial-scale=10.0, maximum-scale=10.0, user-scalable=no">
   <title>Poker Randomizer</title>
 
@@ -17,23 +16,20 @@
   <meta name="theme-color" content="#121212">
 
   <style>
-    /* Center the body to ensure the number appears in the viewport */
+    /* Dark mode styling */
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      margin: 0;
-      padding: 0;
-      width: 100vw; /* Match the viewport width */
-      height: 100vh; /* Match the viewport height */
+      padding: 20px;
       background-color: #121212; /* Dark background */
       color: #f4f4f4; /* Light text for contrast */
-      display: flex; /* Use Flexbox to center content */
-      justify-content: center; /* Center horizontally */
-      align-items: center; /* Center vertically */
+      margin: 0;
+      transform-origin: center top; /* Ensure scaling is centered */
     }
 
     .container {
       max-width: 300px;
+      margin: 0 auto; /* Center the container horizontally */
       padding: 20px;
       border: 1px solid #444; /* Subtle border for dark theme */
       border-radius: 10px;
@@ -157,6 +153,9 @@
       const max = parseInt(document.getElementById('max').value, 10) || 100;
       const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
       document.getElementById('randomNumber').innerText = randomNumber;
+
+      // Scroll to the generated number
+      scrollToNumber();
     }
 
     function startAuto() {
@@ -168,6 +167,17 @@
     function stopAuto() {
       clearInterval(autoGenerateInterval);
     }
+
+    function scrollToNumber() {
+      // Scroll to the number smoothly
+      const numberElement = document.getElementById('randomNumber');
+      numberElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Automatically scroll to the number on page load
+    window.onload = () => {
+      scrollToNumber();
+    };
   </script>
 </body>
 </html>
