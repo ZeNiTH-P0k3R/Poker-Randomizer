@@ -5,13 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Poker Randomizer</title>
 
-  <!-- Link to manifest.json -->
-  <link rel="manifest" href="manifest.json">
-
-  <!-- Favicon and app icons -->
-  <link rel="icon" href="icon.png" sizes="192x192" type="image/png">
-  <link rel="apple-touch-icon" href="icon-512.png" sizes="512x512">
-
   <!-- Theme color for the PWA -->
   <meta name="theme-color" content="#121212">
 
@@ -19,166 +12,44 @@
     /* Dark mode styling */
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 20px;
+      margin: 0;
       background-color: #121212; /* Dark background */
       color: #f4f4f4; /* Light text for contrast */
-      margin: 0;
-      transform-origin: center center; /* Ensure scaling is centered */
-      transform: scale(3.5); /* Zoom in on page load */
-      height: 100vh; /* Ensure it fills the viewport height */
+      height: 100vh; /* Full height */
+      display: flex;
+      justify-content: center;
+      align-items: center;
       overflow: hidden; /* Prevent scrolling */
     }
 
-    .container {
-      max-width: 300px;
-      margin: 0 auto;
-      padding: 20px;
-      border: 1px solid #444; /* Subtle border for dark theme */
-      border-radius: 10px;
-      background: #1e1e1e; /* Slightly lighter dark background */
-    }
-
-    h1 {
-      font-size: 20px;
-      margin-bottom: 10px;
-      color: #f4f4f4; /* Light text */
-    }
-
-    button {
-      padding: 5px 10px; /* Smaller buttons */
-      font-size: 14px; /* Reduced font size */
-      margin-top: 10px;
-      width: 90px; /* All buttons same width */
-      background: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #0056b3;
-    }
-
-    .button-row {
-      display: flex;
-      justify-content: center;
-      gap: 5px; /* Reduced gap between buttons */
-      margin-top: 10px;
-    }
-
     .number {
-      font-size: 80px; /* Larger number for better visibility */
-      margin-top: 20px;
+      font-size: 240px; /* Very large font size */
       font-weight: bold;
-      background: linear-gradient(90deg, #58a3cd 0%, #55cda2 100%); /* Gradient for the number */
+      margin: 0;
+      line-height: 1; /* Remove extra spacing around the number */
+      background: linear-gradient(90deg, #58a3cd 0%, #55cda2 100%); /* Gradient effect */
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-fill-color: transparent;
-    }
-
-    input[type="number"] {
-      padding: 3px; /* Smaller padding */
-      width: 60px; /* Smaller width */
-      margin: 5px;
-      font-size: 14px; /* Reduced font size */
-      background-color: #1e1e1e; /* Dark input field background */
-      color: #f4f4f4; /* Light text */
-      border: 1px solid #444; /* Subtle border */
-      border-radius: 5px;
-    }
-
-    input[type="number"]::placeholder {
-      color: #aaa; /* Placeholder text color */
-    }
-
-    img {
-      margin: 20px auto;
-      display: block;
-      width: 100px;
-    }
-
-    /* Responsive adjustments for small screens */
-    @media screen and (max-width: 400px) {
-      body {
-        font-size: 90%; /* Slightly smaller text */
-      }
-      .container {
-        max-width: 250px; /* Adjust container width for smaller screens */
-        padding: 15px;
-      }
-      .number {
-        font-size: 70px; /* Scale the generated number size */
-      }
-      button {
-        font-size: 12px; /* Smaller button text */
-        width: 80px; /* Narrower buttons */
-      }
-      input[type="number"] {
-        width: 50px; /* Narrower input fields */
-        font-size: 12px;
-      }
+      transform: scale(1.2); /* Slightly zoomed in */
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Display the app icon -->
-    <img src="icon.png" alt="Poker Randomizer Icon">
-
-    <h1>Poker Randomizer</h1>
-    <label for="range">Choose range:</label>
-    <br>
-    <input type="number" id="min" placeholder="Min" value="1">
-    <input type="number" id="max" placeholder="Max" value="100">
-    <br><br>
-    <label for="interval">Time interval (seconds):</label>
-    <br>
-    <input type="number" id="interval" placeholder="Interval" value="3">
-    <br><br>
-
-    <!-- Generate button on a separate line -->
-    <button onclick="generateRandom()">Generate</button>
-
-    <!-- Start and Stop Auto buttons on the same line -->
-    <div class="button-row">
-      <button onclick="startAuto()">Start Auto</button>
-      <button onclick="stopAuto()">Stop Auto</button>
-    </div>
-
-    <div class="number" id="randomNumber">-</div>
-  </div>
+  <!-- The number element -->
+  <div class="number" id="randomNumber">-</div>
 
   <script>
-    let autoGenerateInterval;
-
-    function generateRandom() {
-      const min = parseInt(document.getElementById('min').value, 10) || 1;
-      const max = parseInt(document.getElementById('max').value, 10) || 100;
+    function generateRandomNumber() {
+      const min = 1; // Default minimum value
+      const max = 100; // Default maximum value
       const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
       document.getElementById('randomNumber').innerText = randomNumber;
     }
 
-    function startAuto() {
-      const interval = parseInt(document.getElementById('interval').value, 10) || 3; // Default 3 seconds
-      stopAuto(); // Stop any existing interval to prevent duplicates
-      autoGenerateInterval = setInterval(generateRandom, interval * 1000);
-    }
-
-    function stopAuto() {
-      clearInterval(autoGenerateInterval);
-    }
-
-    function scrollToNumber() {
-      const numberElement = document.getElementById('randomNumber');
-      numberElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
     window.onload = () => {
-      generateRandom(); // Generate a number on page load
-      scrollToNumber(); // Scroll to the number
+      generateRandomNumber(); // Generate the random number on page load
     };
   </script>
 </body>
