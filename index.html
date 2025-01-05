@@ -170,19 +170,17 @@
     }
 
     function scrollToNumber() {
-      // Scroll after a slight delay to ensure content is fully loaded
-      setTimeout(() => {
-        const numberElement = document.getElementById('randomNumber');
-        numberElement.scrollIntoView({ behavior: 'smooth' });
-      }, 100); // Adjust delay if necessary
+      // Scroll to the number smoothly
+      const numberElement = document.getElementById('randomNumber');
+      numberElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     // Automatically scroll and zoom to the number on page load
     window.onload = () => {
-      scrollToNumber();
       setTimeout(() => {
+        scrollToNumber();
         document.body.style.zoom = "1.8"; // Adjust zoom level for your Galaxy Watch screen
-      }, 200); // Slight delay to ensure scrolling finishes before zooming
+      }, 300); // Slight delay to ensure page content is fully loaded before zoom and scroll
     };
   </script>
 </body>
